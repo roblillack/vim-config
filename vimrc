@@ -1,4 +1,5 @@
-set guioptions=al
+set guioptions=ae
+
 "set guifont=-burningsoda-emaruco-medium-r-normal--16-160-75-75-c-80-iso10646-1
 
 " syntax-highlighting an
