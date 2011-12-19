@@ -95,11 +95,19 @@ map <C-Tab> :tabnext<CR>
 " map <D-Left> :tabprevious<CR>
 " imap <D-Left> <C-O>:tabprevious<CR>
 
-map <D-Backspace> :hide<CR>
-map <D-Down> :wincmd j<CR>
-map <D-Up> :wincmd k<CR>
-map <D-Left> :wincmd h<CR>
-map <D-Right> :wincmd l<CR>
+map <silent> <D-Backspace> :hide<CR>
+map <silent> <D-Down> :wincmd j<CR>
+map <silent> <D-Up> :wincmd k<CR>
+map <silent> <D-Left> :wincmd h<CR>
+map <silent> <D-Right> :wincmd l<CR>
+
+map <silent> <D-\> :vsplit<CR>
+map <silent> <D-A-\> :split<CR>
+
+map <silent> <D-A-Left> :tabprev<CR>
+map <silent> <D-A-Right> :tabnext<CR>
+
+let macvim_skip_cmd_opt_movement = 1
 
 set statusline=%<\ %y\ %2*%f%*%=%c,%l/%L%R%H\ %1*%m%*
 hi User1 term=bold ctermbg=Red ctermfg=white cterm=Bold
