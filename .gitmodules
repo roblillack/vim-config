@@ -1,3 +1,6 @@
 [submodule "bundle/bufferlist"]
 	path = bundle/bufferlist
 	url = git://github.com/rockpiper/vim-bufferlist
+[submodule "bundle/markdown"]
+	path = bundle/markdown
+	url = git://github.com/plasticboy/vim-markdown.git
