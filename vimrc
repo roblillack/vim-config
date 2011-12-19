@@ -36,6 +36,9 @@ set mouse=a
 set ttymouse=xterm2
 " backspace geht auch an speziellen positionen
 set backspace=indent,eol,start
+" turn on pattern highlighting when searching
+set hlsearch
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " have command-line completion <Tab> (for filenames, help topics, option names)
 " first list the available options and complete the longest common part, then
@@ -203,3 +206,6 @@ endfunction
 "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 "autocmd FileType c setlocal omnifunc=ccomplete#Complete
+
+
+map <ScrollWheelDown> 
