@@ -81,8 +81,12 @@ imap <C-Q> <ESC><C-Q>
 map <C-J> gq}``
 imap <C-J> <C-O>gq}``
 
+" hint, use `defaults write org.vim.MacVim MMNativeFullScreen 0` to force
+" MacVim to NOT use Lion's freaky native fullscreen support
 map <D-Return> :set invfu<CR>
 imap <silent> <D-Return> <C-O>:set invfu<CR>
+set fuoptions=maxvert,maxhorz
+
 
 " window/tab movement
 map <C-Tab> :tabnext<CR>
