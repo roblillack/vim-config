@@ -110,12 +110,32 @@ map <silent> <D-A-Right> :tabnext<CR>
 let macvim_skip_cmd_opt_movement = 1
 
 set statusline=%<\ %y\ %2*%f%*%=%c,%l/%L%R%H\ %1*%m%*
-hi User1 term=bold ctermbg=Red ctermfg=white cterm=Bold
-hi User2 term=reverse,bold ctermbg=DarkBlue ctermfg=White cterm=Bold gui=bold guifg=#ffff00 guibg=#555555
-hi StatusLine term=reverse ctermbg=blue ctermfg=White cterm=NONE gui=NONE guibg=#555555 guifg=#ffffff
-hi StatusLineNC term=reverse ctermbg=black ctermfg=lightgray cterm=NONE
+colorscheme default
+
+"set colorcolumn=81
+"hi ColorColumn guibg=#f6f6ff
+
+if has('gui_running')
+  set cursorline
+  hi CursorLine guibg=#f6f6ff term=NONE
+  autocmd WinEnter * setlocal cursorline
+  autocmd WinLeave * setlocal nocursorline
+
+  autocmd InsertEnter * highlight CursorLine guibg=#ffeeff
+  autocmd InsertLeave * highlight CursorLine guibg=#f6f6ff
+endif
+
+hi User1 term=bold cterm=bold ctermbg=red ctermfg=white gui=bold guifg=white guibg=red
+hi User2 term=reverse,bold ctermbg=DarkBlue ctermfg=White cterm=Bold gui=bold guifg=#ffffff guibg=#6699cc
+hi StatusLine term=reverse ctermbg=blue ctermfg=White cterm=NONE gui=NONE guibg=#6699cc guifg=#ffffff
+hi StatusLineNC term=reverse ctermbg=black ctermfg=lightgray cterm=NONE gui=NONE guibg=#dddddd guifg=#555555
+hi! link VertSplit StatusLineNC
 hi ModeMsg ctermbg=Red ctermfg=White cterm=Bold
-hi LineNr ctermbg=LightGray ctermfg=Black guifg=#555555 guibg=#eeeeee
+hi LineNr ctermbg=LightGray ctermfg=Black guifg=#555555 guibg=#f6f6f6
+autocmd InsertEnter * highlight User2 guibg=red ctermbg=red
+autocmd InsertLeave * highlight User2 guibg=#6699cc ctermbg=blue
+autocmd InsertEnter * highlight StatusLine guibg=red ctermbg=red
+autocmd InsertLeave * highlight StatusLine guibg=#6699cc ctermbg=blue
 
 hi Statement ctermfg=DarkBlue cterm=Bold
 hi Function ctermfg=Black cterm=Bold
