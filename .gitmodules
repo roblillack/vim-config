@@ -1,0 +1,3 @@
+[submodule "bundle/bufferlist"]
+	path = bundle/bufferlist
+	url = git://github.com/rockpiper/vim-bufferlist
