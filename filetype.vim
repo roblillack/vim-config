@@ -19,6 +19,12 @@ augroup todo
   autocmd BufNewFile,BufRead todo setfiletype todo
 augroup END
 
+augroup taskjuggler 
+  au!
+  autocmd BufNewFile,BufRead *.tjp,*.tji setfiletype tjp 
+augroup END 
+
+
 "augroup ruby
 "  au!
 "augroup END
