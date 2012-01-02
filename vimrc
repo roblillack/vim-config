@@ -103,6 +103,7 @@ map <C-Tab> :tabnext<CR>
 " imap <D-Left> <C-O>:tabprevious<CR>
 
 map <silent> <D-Backspace> :hide<CR>
+map <silent> <D-Delete> :hide<CR>
 map <silent> <D-Down> :wincmd j<CR>
 map <silent> <D-Up> :wincmd k<CR>
 map <silent> <D-Left> :wincmd h<CR>
