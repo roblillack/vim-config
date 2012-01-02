@@ -207,5 +207,4 @@ endfunction
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 "autocmd FileType c setlocal omnifunc=ccomplete#Complete
 
-
-map <ScrollWheelDown> 
+"map <ScrollWheelDown> 
