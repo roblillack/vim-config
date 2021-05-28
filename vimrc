@@ -1,8 +1,73 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Plugin 'Valloric/YouCompleteMe'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/gmarik/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+
+Plugin 'fatih/vim-go'
+let g:go_auto_type_info = 1
+let g:go_fmt_command = "goimports"
+let g:go_autodetect_gopath = 0
+
+Plugin 'ctrlpvim/ctrlp.vim'
+
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+imap <F8> <ESC>:TagbarToggle<CR>
+
+Plugin 'git://github.com/altercation/vim-colors-solarized.git'
+Plugin 'desert-warm-256'
+
+Plugin 'roblillack/vim-bufferlist'
+
+" Avoid a name conflict with L9
+"Plugin 'user/L9', {'name': 'newL9'}
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+endif
+
+" Required:
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+
+"colorscheme desert-warm-256
+
 set guioptions=ae
 
 "set guifont=-burningsoda-emaruco-medium-r-normal--16-160-75-75-c-80-iso10646-1
 
-call pathogen#infect()
+"call pathogen#infect()
 
 " syntax-highlighting an
 syntax on
@@ -44,6 +109,7 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 " first list the available options and complete the longest common part, then
 " have further <Tab>s cycle through the possibilities:
 set wildmode=list:longest,full
+set completeopt=longest,menuone
 
 " use "[RO]" for "[readonly]" to save space in the message line:
 set shortmess+=r
@@ -117,48 +183,35 @@ map <silent> <D-A-Right> :tabnext<CR>
 
 let macvim_skip_cmd_opt_movement = 1
 
-set statusline=%<\ %y\ %2*%f%*%=%c,%l/%L%R%H\ %1*%m%*
-colorscheme default
-
-"set colorcolumn=81
-"hi ColorColumn guibg=#f6f6ff
-
 if has('gui_running')
+  " taken from here: https://gist.github.com/imiric/9038570
+  let g:airline_powerline_fonts = 1
   set cursorline
-  hi CursorLine guibg=#f6f6ff term=NONE
-  autocmd WinEnter * setlocal cursorline
-  autocmd WinLeave * setlocal nocursorline
-
-  autocmd InsertEnter * highlight CursorLine guibg=#ffeeff
-  autocmd InsertLeave * highlight CursorLine guibg=#f6f6ff
+  set guifont=Envy\ Code\ R\ for\ Powerline:h12
+  "set guifont=Anonymous\ Pro\ for\ Powerline:h13
+  colorscheme solarized
+  "hi CursorLine guibg=#f6f6ff term=NONE
+  "autocmd WinEnter * setlocal cursorline
+  "autocmd WinLeave * setlocal nocursorline
+  "
+  "autocmd InsertEnter * highlight CursorLine guibg=#ffeeff
+  "autocmd InsertLeave * highlight CursorLine guibg=#f6f6ff
+  "set colorcolumn=81
+  "hi ColorColumn guibg=#f6f6ff
+else
+  hi User1 term=bold cterm=bold ctermbg=red ctermfg=white gui=bold guifg=white guibg=red
+  hi User2 term=reverse,bold ctermbg=DarkBlue ctermfg=White cterm=Bold gui=bold guifg=#ffffff guibg=#6699cc
+  hi StatusLine term=reverse ctermbg=blue ctermfg=White cterm=NONE gui=NONE guibg=#6699cc guifg=#ffffff
+  hi StatusLineNC term=reverse ctermbg=black ctermfg=lightgray cterm=NONE gui=NONE guibg=#dddddd guifg=#555555
+  hi! link VertSplit StatusLineNC
+  hi ModeMsg ctermbg=Red ctermfg=White cterm=Bold
+  hi LineNr ctermbg=LightGray ctermfg=Black guifg=#555555 guibg=#f6f6f6
+  autocmd InsertEnter * highlight User2 guibg=red ctermbg=red
+  autocmd InsertLeave * highlight User2 guibg=#6699cc ctermbg=blue
+  autocmd InsertEnter * highlight StatusLine guibg=red ctermbg=red
+  autocmd InsertLeave * highlight StatusLine guibg=#6699cc ctermbg=blue
+  set statusline=%<\ %y\ %2*%f%*%=%c,%l/%L%R%H\ %1*%m%*
 endif
-
-hi User1 term=bold cterm=bold ctermbg=red ctermfg=white gui=bold guifg=white guibg=red
-hi User2 term=reverse,bold ctermbg=DarkBlue ctermfg=White cterm=Bold gui=bold guifg=#ffffff guibg=#6699cc
-hi StatusLine term=reverse ctermbg=blue ctermfg=White cterm=NONE gui=NONE guibg=#6699cc guifg=#ffffff
-hi StatusLineNC term=reverse ctermbg=black ctermfg=lightgray cterm=NONE gui=NONE guibg=#dddddd guifg=#555555
-hi! link VertSplit StatusLineNC
-hi ModeMsg ctermbg=Red ctermfg=White cterm=Bold
-hi LineNr ctermbg=LightGray ctermfg=Black guifg=#555555 guibg=#f6f6f6
-autocmd InsertEnter * highlight User2 guibg=red ctermbg=red
-autocmd InsertLeave * highlight User2 guibg=#6699cc ctermbg=blue
-autocmd InsertEnter * highlight StatusLine guibg=red ctermbg=red
-autocmd InsertLeave * highlight StatusLine guibg=#6699cc ctermbg=blue
-
-hi Statement ctermfg=DarkBlue cterm=Bold
-hi Function ctermfg=Black cterm=Bold
-hi link rubyDefine Statement
-" let g:showfuncctagsbin = "/usr/local/bin/exctags"
-
-" taglist-plugin (http://www.geocities.com/yegappan/taglist/)
-" let Tlist_Ctags_Cmd = "exctags"
-" let Tlist_Compact_Format = 1
-" let Tlist_File_Fold_Auto_Close = 1
-" let Tlist_Auto_Highlight_Tag = 1
-" let Tlist_Show_One_File = 1
-" let Tlist_Show_Menu = 1
-" let Tlist_Inc_Winwidth = 0
-" let Tlist_Exit_OnlyWindow = 1
 
 " BufferList stuff
 map <silent> <F3> :call BufferList()<CR>
@@ -183,7 +236,7 @@ endfunction
 
 function! OmniTabWrapper()
   let col = col('.')
-  if omnifunc != '' || !col || getline('.')[col-1] !~ '\k'
+  if !exists('omnifunc') || !col || getline('.')[col-1] !~ '\k'
     return "\<tab>"
   else
     return "\<c-x>\<c-o>"
@@ -192,9 +245,6 @@ endfunction
 
 "inoremap <tab> <c-r>=InsertTabWrapper ("forward")<cr>
 "inoremap <s-tab> <c-r>=InsertTabWrapper ("backward")<cr>
-
-"inoremap <tab> <c-r>=OmniTabWrapper()<cr>
-"inoremap <c-space> <c-x><c-o>
 
 "autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 "autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
@@ -207,5 +257,6 @@ endfunction
 "autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 "autocmd FileType c setlocal omnifunc=ccomplete#Complete
+"autocmd FileType go setlocal omnifunc=go#complete#Complete
 
 "map <ScrollWheelDown> 
