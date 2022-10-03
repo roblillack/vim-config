@@ -36,10 +36,12 @@ Plugin 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
 imap <F8> <ESC>:TagbarToggle<CR>
 
-Plugin 'git://github.com/altercation/vim-colors-solarized.git'
-Plugin 'desert-warm-256'
+"Plugin 'git://github.com/altercation/vim-colors-solarized.git'
+"Plugin 'desert-warm-256'
 
 Plugin 'roblillack/vim-bufferlist'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'axvr/photon.vim'
 
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
@@ -50,10 +52,11 @@ filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-endif
+"if has('gui_running')
+"  set background=dark
+"  colorscheme solarized
+"endif
+colorscheme antiphoton
 
 " Required:
 filetype plugin indent on
@@ -98,7 +101,9 @@ set smartindent
 set cinkeys=0{,0},:,0#,!<Tab>,!^F
 " ordentliche mouse-unterstütung, auch in screen
 set mouse=a
-set ttymouse=xterm2
+if !has('nvim')
+  set ttymouse=xterm2
+endif
 " backspace geht auch an speziellen positionen
 set backspace=indent,eol,start
 " turn on pattern highlighting when searching
@@ -127,6 +132,9 @@ execute 'set listchars+=tab:' . nr2char(187) . nr2char(183)
 
 " do not unload buffers, which are not shown in a windows atm
 set hidden
+
+"set <C-Backspace>=[rC;BS~
+"imap <ESC>[rC;BS~ <C-Backspace>
 
 " set some broken keymaps
 map <ESC>[14~ <F4>
